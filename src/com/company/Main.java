@@ -6,7 +6,7 @@ public class Main {
         int[] arr = Common.generate(10);
         System.out.print("Initial: ");
         Common.print(arr);
-        Heap.sort(arr);
+        Heap.sort(arr, Order.ASC);
         System.out.print(" Result: ");
         Common.print(arr);
     }
