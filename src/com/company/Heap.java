@@ -8,37 +8,31 @@ public class Heap {
     public static int[] sort(int[] arr, Order order) {
         // building heap
         for (int i = (arr.length - 2) / 2; i >= 0; i--) {
-            toPlace(i, arr, arr.length - 1, order);
+            sink(arr, i, arr.length - 1, order);
         }
-        // deleting maximums
-        int lastElem = arr.length - 1;
-        while (lastElem > 0) {
-            swap(arr, 0, lastElem);
-            lastElem--;
-            toPlace(0, arr, lastElem, order);
+        // sorting
+        for (int i = arr.length - 1; i > 0; i--) {
+            swap(arr, 0, i);
+            sink(arr, 0, i - 1, order);
         }
         return arr;
     }
 
-    private static void toPlace(int index, int[] arr, int lastElemIndex, Order order) {
-        while (true) {
-            int leftInd = index * 2 + 1;
-            if (leftInd > lastElemIndex) {
-                break;
-            }
-            int rightInd = index * 2 + 2;
-            int biggest = leftInd;
-            if (rightInd <= lastElemIndex) {
-                biggest = (compare(arr[rightInd], arr[leftInd], order)) ? leftInd : rightInd;
-            }
-            if (compare(arr[index], arr[biggest], order)) {
-                swap(arr, index, biggest);
-            }
-            index = biggest;
+    private static void sink(int[] arr, int index, int lastElemIndex, Order order) {
+        int leftInd = index * 2 + 1;
+        if (leftInd > lastElemIndex) {
+            return;
         }
+        int rightInd = leftInd + 1;
+        int biggest = (rightInd > lastElemIndex) ? (leftInd) : ((ordered(arr[rightInd], arr[leftInd], order)) ? leftInd : rightInd);
+        if (ordered(arr[biggest], arr[index], order)) {
+            return;
+        }
+        swap(arr, index, biggest);
+        sink(arr, biggest, lastElemIndex, order);
     }
 
-    private static boolean compare(int a, int b, Order order) {
+    private static boolean ordered(int a, int b, Order order) {
         return (order == Order.ASC) ? (a < b) : (a > b);
     }
 
