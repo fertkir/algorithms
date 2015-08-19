@@ -8,19 +8,18 @@ public class Merge {
     public static void sort(int[] arr) {
         int[] copy = new int[arr.length];
         System.arraycopy(arr, 0, copy, 0, arr.length);
-        split(arr, 0, arr.length, copy);
+        sort(arr, 0, arr.length, copy);
     }
 
-    private static void split(int[] arr, int start, int size, int[] copy) {
-        int lstart = start;
+    private static void sort(int[] arr, int start, int size, int[] copy) {
         int lsize = size / 2;
         int rstart = start + lsize;
         int rsize = size - lsize;
         if (lsize > 1) {
-            split(arr, lstart, lsize, copy);
+            sort(arr, start, lsize, copy);
         }
         if (rsize > 1) {
-            split(arr, rstart, rsize, copy);
+            sort(arr, rstart, rsize, copy);
         }
         // merging
         int lInd = start;
@@ -31,9 +30,6 @@ public class Merge {
         }
         while (lInd < rstart) {
             arr[i++] = copy[lInd++];
-        }
-        while (rInd < start + size) {
-            arr[i++] = copy[rInd++];
         }
         System.arraycopy(arr, start, copy, start, size);
     }
