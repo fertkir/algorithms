@@ -5,7 +5,7 @@ package com.company.sorts;
  */
 public class Heap {
 
-    public static int[] sort(int[] arr) {
+    public static void sort(int[] arr) {
         // building max-heap
         for (int i = (arr.length - 2) / 2; i >= 0; i--) {
             sink(arr, i, arr.length - 1);
@@ -15,7 +15,6 @@ public class Heap {
             swap(arr, 0, i);
             sink(arr, 0, i - 1);
         }
-        return arr;
     }
 
     private static void sink(int[] arr, int index, int lastElemIndex) {
