@@ -15,5 +15,6 @@ public class Main {
 
         Common.control(arr, checkCopy, "Heap");
         Common.control(arr, checkCopy, "Merge");
+        Common.control(arr, checkCopy, "Bubble");
     }
 }
