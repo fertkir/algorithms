@@ -17,5 +17,6 @@ public class Main {
         Common.control(arr, checkCopy, "Merge");
         Common.control(arr, checkCopy, "Bubble");
         Common.control(arr, checkCopy, "Selection");
+        Common.control(arr, checkCopy, "Insertion");
     }
 }
