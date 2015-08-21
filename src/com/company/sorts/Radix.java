@@ -47,7 +47,7 @@ public class Radix {
         public void toArray(int[] arr) {
             int i = 0;
             while (i < arr.length) {
-                for (int j = 0; i < BASE; j++) {
+                for (int j = 0; j < BASE; j++) {
                     for (Object val : lists[j]) {
                         arr[i++] = (int) val;
                     }
