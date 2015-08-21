@@ -19,5 +19,6 @@ public class Main {
         Common.control(arr, checkCopy, "Selection");
         Common.control(arr, checkCopy, "Insertion");
         Common.control(arr, checkCopy, "Quick");
+        Common.control(arr, checkCopy, "Radix");
     }
 }
