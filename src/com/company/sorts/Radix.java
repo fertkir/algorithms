@@ -16,16 +16,16 @@ public class Radix {
         }
         int digitsCount = (int) Math.log10(maxValue) + 1;
         Bucket bucket = new Bucket();
-        for (int i = 0; i < digitsCount; i++) {
+        for (int radix = 0; radix < digitsCount; radix++) {
             for (int val : arr) {
-                bucket.put(getDigit(val, i), val);
+                bucket.put(getDigit(val, radix), val);
             }
             bucket.toArray(arr);
         }
     }
 
-    public static int getDigit(int number, int rank) {
-        return number % (int) Math.pow(10, rank + 1) / (rank == 0 ? 1 : (int) Math.pow(10, rank));
+    public static int getDigit(int number, int radix) {
+        return number % (int) Math.pow(10, radix + 1) / (radix == 0 ? 1 : (int) Math.pow(10, radix));
     }
 
     private static class Bucket {
