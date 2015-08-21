@@ -15,8 +15,8 @@ public class Radix {
             }
         }
         int digitsCount = (int) Math.log10(maxValue) + 1;
+        Bucket bucket = new Bucket();
         for (int i = 0; i < digitsCount; i++) {
-            Bucket bucket = new Bucket();
             for (int val : arr) {
                 bucket.put(getDigit(val, i), val);
             }
@@ -45,13 +45,12 @@ public class Radix {
         }
 
         public void toArray(int[] arr) {
-            int i = 0;
-            while (i < arr.length) {
-                for (int j = 0; j < BASE; j++) {
-                    for (Object val : lists[j]) {
-                        arr[i++] = (int) val;
-                    }
+            int j = 0;
+            for (int i = 0; i < BASE; i++) {
+                for (Object val : lists[i]) {
+                    arr[j++] = (int) val;
                 }
+                lists[i].clear();
             }
         }
     }
