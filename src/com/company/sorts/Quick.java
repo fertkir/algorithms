@@ -6,27 +6,26 @@ package com.company.sorts;
 public class Quick {
 
     public static void sort(int[] arr) {
-        sort(arr, 0, arr.length - 1);
+        partition(arr, 0, arr.length - 1);
     }
 
-    private static void sort(int[] arr, int start, int end) {
-        if (start < end) {
-            int pivot = partition(arr, start, end);
-            sort(arr, start, pivot - 1);
-            sort(arr, pivot + 1, end);
+    private static void partition(int[] arr, int start, int end) {
+        if (start >= end) {
+            return;
         }
-    }
-
-    private static int partition(int[] arr, int start, int end) {
+        int pivot = arr[end];
         int pIndex = start;
-        for (int i = start; i < end; i++) {
-            if (arr[i] <= arr[end]) {
+        int i = start;
+        while (i < end) {
+            if (arr[i] < pivot) {
                 swap(arr, i, pIndex);
                 pIndex++;
             }
+            i++;
         }
-        swap(arr, pIndex, end);
-        return pIndex;
+        swap(arr, pIndex, i);
+        partition(arr, start, pIndex - 1);
+        partition(arr, pIndex + 1, end);
     }
 
     private static void swap(int[] arr, int ind1, int ind2) {
