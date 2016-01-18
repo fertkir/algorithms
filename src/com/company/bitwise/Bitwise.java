@@ -6,8 +6,25 @@ package com.company.bitwise;
 public class Bitwise {
 
     public static void main(String[] args) {
+        System.out.println(numberOfOnes(9));
         System.out.println(findOddWhenOthersEven(new int[] {2, 3, 2, 2, 3, 6, 5, 5, 5, 6, 2}));
         System.out.println(findUniqueWhenTriple(new int[] {2, 3, 6, 2, 3, 6, 3, 5, 6, 2}));
+    }
+
+    /**
+     * Please implement a function to get the number of 1s in an integer.
+     * For example, the integer 9 is 1001 in binary, so it returns 2 since there are two bits of 1s.
+     *
+     * @param value
+     * @return
+     */
+    public static int numberOfOnes(int value) {
+        int count = 0;
+        do {
+            count += value & 1;
+            value >>>= 1;
+        } while (value != 0);
+        return count;
     }
 
     /**
