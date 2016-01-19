@@ -8,7 +8,7 @@ import static java.lang.System.out;
 public class Math {
 
     public static void main(String[] args) {
-        out.println(findMissing(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 10, 11}));
+        out.println(findMissing(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}));
     }
 
     /**
@@ -21,8 +21,8 @@ public class Math {
             sum += value;
         }
         int n = naturalSequence.length;
-        int pairsNumber = n + 1;
-        int sumOfPairs = (n % 2 == 0) ? sum : (sum - pairsNumber / 2);
-        return pairsNumber - sumOfPairs % pairsNumber;
+        int sumOfPair = n + 1;
+        int sumWithoutMiddleElement = (n % 2 == 0) ? sum : (sum - sumOfPair / 2);
+        return sumOfPair - sumWithoutMiddleElement % sumOfPair;
     }
 }
