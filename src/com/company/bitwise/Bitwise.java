@@ -14,6 +14,10 @@ public class Bitwise {
         out.println(bitsToConvert1(31, 14));
         out.println(bitsToConvert2(31, 14));
         out.println(Integer.toBinaryString(swapEvenOddBits(0b011010110101)));
+        out.println(Integer.toBinaryString(insert1(0b10000000000, 0b10101, 2, 6)));
+        out.println(Integer.toBinaryString(insert2(0b10000000000, 0b10101, 2, 6)));
+        out.println(Integer.toBinaryString(nextLargestWithSameOnesCount(0b101011)));
+        out.println(Integer.toBinaryString(nextSmallestWithSameOnesCount(0b101011)));
     }
 
     /**
@@ -80,5 +84,44 @@ public class Bitwise {
      */
     public static int swapEvenOddBits(int value) {
         return ((value & 0x55555555) << 1) | ((value & 0xAAAAAAA) >> 1);
+    }
+
+    /**
+     * You are given two 32-bit numbers, N and M, and two bit positions, i and j.
+     * Write a method to set all bits between i and j in N equal to M
+     * (e.g., M becomes a substring of N located at i and starting at j).
+     *
+     * EXAMPLE:
+     * Input: N = 10000000000, M = 10101, i = 2, j = 6
+     * Output: N = 10001010100
+     */
+    public static int insert1(int n, int m, int i, int j) {
+        int mask = (~0 << (j + 1)) + (~0 >>> (32 - i));
+        return (n & mask) + (m << i);
+    }
+
+    public static int insert2(int n, int m, int i, int j) {
+        int mask = (~0 << (j + 1)) | ((1 << i) - 1);
+        return (n & mask) | (m << i);
+    }
+
+    public static int nextLargestWithSameOnesCount(int value) {
+        int onesCount = numberOfOnes(value);
+        return ~0 << (32 - onesCount);
+    }
+
+    public static int nextSmallestWithSameOnesCount(int value) {
+        int newValue = value;
+        int zeroCount = 0;
+        while (newValue % 2 == 0) {
+            newValue >>= 1;
+            zeroCount++;
+        }
+        int onesCount = 0;
+        while (newValue % 2 != 0) {
+            newValue >>= 1;
+            onesCount++;
+        }
+        return value + (((1 << onesCount) - 1) << zeroCount);
     }
 }
