@@ -3,7 +3,8 @@ package com.company.other;
 import static com.company.other.HorseStepsCount.Position.*;
 
 /**
- * Created by fertkir on 26.01.16.
+ * Given 2 cells of a chess desk.
+ * Find a number of steps needed for horse to get from the first cell to the second.
  */
 public class HorseStepsCount {
 
