@@ -17,6 +17,7 @@ public class Arrays {
         System.out.println("b: " + java.util.Arrays.toString(b));
         merge(a, 5, b);
         System.out.println("a: " + java.util.Arrays.toString(a));
+        System.out.println("max subsequence: " + java.util.Arrays.toString(maxSequence(new int[] { -1, 8, -4, 0, 100, -12 })));
     }
 
     /**
@@ -33,6 +34,30 @@ public class Arrays {
         if (curB >= 0) {
             System.arraycopy(b, 0, a, 0, curB + 1);
         }
+    }
+
+    /**
+     * Given an unsorted integer arrays containing values that are >, == or < 0.
+     * Return the subarray or values, whose sum is maximum.
+     */
+    public static int[] maxSequence(int[] arr) {
+        int maxSum = Integer.MIN_VALUE;
+        int maxStart = 0;
+        int maxEnd = 0;
+        for (int i = 0; i < arr.length; i++) {
+            int sum = 0;
+            for (int j = i; j < arr.length; j++) {
+                sum += arr[j];
+                if (sum > maxSum) {
+                    maxSum = sum;
+                    maxStart = i;
+                    maxEnd = j;
+                }
+            }
+        }
+        int[] result = new int[maxEnd - maxStart + 1];
+        System.arraycopy(arr, maxStart, result, 0, maxEnd - maxStart + 1);
+        return result;
     }
 
 }
