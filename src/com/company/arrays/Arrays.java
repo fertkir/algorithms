@@ -37,8 +37,8 @@ public class Arrays {
     }
 
     /**
-     * Given an unsorted integer arrays containing values that are >, == or < 0.
-     * Return the subarray or values, whose sum is maximum.
+     * Given an unsorted integer array containing values that are >, == or < 0.
+     * Return the subarray of values, whose sum is maximum.
      */
     public static int[] maxSequence(int[] arr) {
         int maxSum = Integer.MIN_VALUE;
